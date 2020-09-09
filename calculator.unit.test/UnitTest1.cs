@@ -61,5 +61,22 @@ namespace calculator.unit.test
         {
             Assert.That(uut.Power(a, b), Is.EqualTo(c));
         }
+
+        [TestCase(6, 2, 3)]
+        [TestCase(50, 5, 10)]
+        [TestCase(8, 1, 8)]
+
+        public void TestDivisor(double a, double b,double c)
+        {
+            Assert.That(uut.Divide(a, b), Is.EqualTo(c));
+        }
+
+        [TestCase(0)]
+        /*
+        public void TestDivisorbyZero(double a)
+        {
+            Assert.That(uut.Divide(a,b),Is.);
+        }
+        */
     }
 }
