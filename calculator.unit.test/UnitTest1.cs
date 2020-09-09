@@ -8,11 +8,11 @@ namespace calculator.unit.test
 
     public class CalculatorTests
     {
-        private Calculator_class uut;
+        private Calculator_classd uut;
         [SetUp]
         public void Setup()
         {
-            uut = new Calculator_class();
+            uut = new Calculator_classd();
         }
         // testcase example below
         [TestCase(2, 6, 8)]
@@ -71,7 +71,7 @@ namespace calculator.unit.test
             Assert.That(uut.Divide(a, b), Is.EqualTo(c));
         }
 
-        [TestCase(0)]
+        // [TestCase(0)]
         /*
         public void TestDivisorbyZero(double a)
         {
