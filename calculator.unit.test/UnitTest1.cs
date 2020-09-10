@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using Calculator;
 // so you need to add dependency, make the class public and add the namespace to project
@@ -71,12 +72,13 @@ namespace calculator.unit.test
             Assert.That(uut.Divide(a, b), Is.EqualTo(c));
         }
 
-        // [TestCase(0)]
-        /*
-        public void TestDivisorbyZero(double a)
-        {
-            Assert.That(uut.Divide(a,b),Is.);
+        [Test]
+        public void TestDivisorbyZero()
+        { 
+            Assert.Catch<ExceptionDivideByZero>(()=>uut.Divide(6, 0));
         }
-        */
+
+        
+
     }
 }

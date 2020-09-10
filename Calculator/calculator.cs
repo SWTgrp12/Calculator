@@ -40,18 +40,14 @@ namespace Calculator
 
         public double Divide(double dividend, double divisor) // arseniy
         {
-            try
+            if (divisor == 0)
             {
-                Accumulator = dividend / divisor;
+                throw new ExceptionDivideByZero();
             }
 
-            catch (DivideByZeroException e)
-            {
-                Console.WriteLine("cannot divide by zero");
-            }
-
+            Accumulator = dividend / divisor;
+            
             return Accumulator;
-
         }
 
         public double Accumulator { get; private set; } = 0; // 0 is default
@@ -90,7 +86,8 @@ namespace Calculator
 
             catch (DivideByZeroException e)
             {
-                Console.WriteLine("cannot divide by zero");
+                Console.WriteLine(e.Message);
+                    
             }
             return Accumulator;
         }
