@@ -8,11 +8,11 @@ namespace calculator.unit.test
 
     public class CalculatorTests
     {
-        private Calculator_classd uut;
+        private Calculator_class uut;
         [SetUp]
         public void Setup()
         {
-            uut = new Calculator_classd();
+            uut = new Calculator_class();
         }
         // testcase example below
         [TestCase(2, 6, 8)]
