@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Calculator
 {
-    public class Calculator_classd
+    public class Calculator_class
     {
         public double Add(double a, double b)
         {
@@ -27,7 +27,15 @@ namespace Calculator
 
         public double Power(double a, double exp) // pav
         {
-            return Math.Pow(a, exp);
+            // vi skal have en exception i den her stil for at undgå imaginære tal
+            if (a < 0.0 && exp < 1 && exp > -1.0)
+            {
+                Console.WriteLine("cannot take root of negative number");
+            }
+            // burde Accumulator dimsen ikke blive opdateret her?
+            // return Math.Pow(a, exp);
+            Accumulator = Math.Pow(a, exp);
+            return Accumulator;
         }
 
         public double Divide(double dividend, double divisor) // arseniy
@@ -56,28 +64,45 @@ namespace Calculator
         // jer 2 start
         public double Add(double addend)
         {
-            return 0;
+            Accumulator += addend;
+            return Accumulator;
         }
 
         public double Subtract(double subtractor)
         {
-            return 0;
+            Accumulator -= subtractor;
+            return Accumulator;
         }
 
         public double Multiply(double multiplier) // pav
         {
-            return 0;
+            Accumulator *= multiplier;
+            return Accumulator;
 
         }
 
         public double Divide(double divisor) // pav
         {
-            return 0;
+            try
+            {
+                Accumulator /= divisor;
+            }
 
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine("cannot divide by zero");
+            }
+            return Accumulator;
         }
         ///////// jer 2 slut
         public double Power(double exponent) // arseniy
         {
+            // vi skal have en exception i den her stil for at undgå imaginære tal
+            if (Accumulator < 0.0 && exponent < 1.0 && exponent > -1.0)
+            {
+                Console.WriteLine("cannot take root of negative number");
+            }
+
             Accumulator = Math.Pow(Accumulator, exponent);
             return Accumulator;
 
