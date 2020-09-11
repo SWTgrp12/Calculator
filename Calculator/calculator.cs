@@ -9,18 +9,21 @@ namespace Calculator
         public double Add(double a, double b)
         {
             Accumulator = a + b;
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
         }
 
         public double Subtract(double a, double b)
         {
             Accumulator = a - b;
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
         }
 
         public double Multiply(double a, double b)
         {
             Accumulator = a * b;
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
 
         }
@@ -34,7 +37,7 @@ namespace Calculator
             }
             
             Accumulator = Math.Pow(a, exp);
-
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
         }
 
@@ -45,7 +48,7 @@ namespace Calculator
             }
 
             Accumulator = dividend / divisor;
-            
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
 
         }
@@ -61,18 +64,21 @@ namespace Calculator
         public double Add(double addend)
         {
             Accumulator += addend;
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
         }
 
         public double Subtract(double subtractor)
         {
             Accumulator -= subtractor;
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
         }
 
         public double Multiply(double multiplier) // pav
         {
             Accumulator *= multiplier;
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
         }
 
@@ -83,7 +89,7 @@ namespace Calculator
               throw new DivideByZeroException();
             }
             Accumulator /= divisor;
-
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
         }
         ///////// jer 2 slut
@@ -96,6 +102,7 @@ namespace Calculator
             }
 
             Accumulator = Math.Pow(Accumulator, exponent);
+            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
 
         }
