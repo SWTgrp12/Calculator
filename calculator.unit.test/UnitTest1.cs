@@ -10,7 +10,7 @@ namespace calculator.unit.test
     public class CalculatorTests
     {
         private Calculator_class uut;
-        double Precision = 0.015;
+        readonly double Precision = 0.015;
         [SetUp]
         public void Setup()
         {
