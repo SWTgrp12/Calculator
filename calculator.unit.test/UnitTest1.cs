@@ -101,28 +101,14 @@ namespace calculator.unit.test
             Assert.That(uut.Divide(a), Is.EqualTo(result));
         }
 
-        [Test]
-        public void Divide_By_Zero()
+        [TestCase(10)]
+        [TestCase(0)]
+        public void Divide_By_Zero(double a)
         {
+            uut.Add(a);
+            Console.WriteLine(uut.Accumulator);
             Assert.Catch<ExceptionDivideByZero>(() => uut.Divide(6, 0));
-        }
-        
-        [TestCase(10)]
-        [TestCase(0)]
-        public void Divide_By_Zero_Single(double a)
-        {
-            uut.Add(a);
-            Console.WriteLine(uut.Accumulator);
-            Assert.DoesNotThrow(() => uut.Divide(0));
-        }
-
-        [TestCase(10)]
-        [TestCase(0)]
-        public void Divide_By_Zero_Returns(double a)
-        {
-            uut.Add(a);
-            Console.WriteLine(uut.Accumulator);
-            Assert.That(uut.Divide(0), Is.EqualTo(a));
+            Assert.That(uut.Accumulator, Is.EqualTo(a));
         }
 
         // Power //
