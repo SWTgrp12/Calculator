@@ -11,4 +11,12 @@ namespace Calculator
             Console.WriteLine("cannot divide by zero");
         }
     }
+
+    public class ExceptionImaginaryNumber : Exception
+    {
+        public ExceptionImaginaryNumber()
+        {
+            Console.WriteLine("exponent most be positive numbers");
+        }
+    }
 }

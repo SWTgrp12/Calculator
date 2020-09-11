@@ -30,17 +30,17 @@ namespace Calculator
             // vi skal have en exception i den her stil for at undgå imaginære tal 
             if (a < 0.0 && exp < 1 && exp > -1.0)
             {
-                Console.WriteLine("cannot take root of negative number");
+                throw new ExceptionImaginaryNumber();
             }
-            else Accumulator = Math.Pow(a, exp);
+            
+            Accumulator = Math.Pow(a, exp);
 
             return Accumulator;
         }
 
         public double Divide(double dividend, double divisor) // arseniy
         {
-            try
-            {
+            if(divisor == 0){
                 throw new ExceptionDivideByZero();
             }
 
@@ -80,16 +80,10 @@ namespace Calculator
         {
             if (divisor == 0)
             {
-                Console.WriteLine("Cannot divide by zero");
-                // throw new System.DivideByZeroException();
+              throw new DivideByZeroException();
             }
-            else Accumulator /= divisor;
+            Accumulator /= divisor;
 
-            catch (DivideByZeroException e)
-            {
-                Console.WriteLine(e.Message);
-                    
-            }
             return Accumulator;
         }
         ///////// jer 2 slut
@@ -98,7 +92,7 @@ namespace Calculator
             // vi skal have en exception i den her stil for at undgå imaginære tal
             if (Accumulator < 0.0 && exponent < 1.0 && exponent > -1.0)
             {
-                Console.WriteLine("cannot take root of negative number");
+                throw new ExceptionImaginaryNumber();
             }
 
             Accumulator = Math.Pow(Accumulator, exponent);
