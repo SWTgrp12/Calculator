@@ -27,20 +27,19 @@ namespace Calculator
 
         public double Power(double a, double exp) // pav
         {
-            // vi skal have en exception i den her stil for at undgå imaginære tal
+            // vi skal have en exception i den her stil for at undgå imaginære tal 
             if (a < 0.0 && exp < 1 && exp > -1.0)
             {
                 Console.WriteLine("cannot take root of negative number");
             }
-            // burde Accumulator dimsen ikke blive opdateret her?
-            // return Math.Pow(a, exp);
-            Accumulator = Math.Pow(a, exp);
+            else Accumulator = Math.Pow(a, exp);
+
             return Accumulator;
         }
 
         public double Divide(double dividend, double divisor) // arseniy
         {
-            if (divisor == 0)
+            try
             {
                 throw new ExceptionDivideByZero();
             }
@@ -48,6 +47,7 @@ namespace Calculator
             Accumulator = dividend / divisor;
             
             return Accumulator;
+
         }
 
         public double Accumulator { get; private set; } = 0; // 0 is default
@@ -74,15 +74,16 @@ namespace Calculator
         {
             Accumulator *= multiplier;
             return Accumulator;
-
         }
 
         public double Divide(double divisor) // pav
         {
-            try
+            if (divisor == 0)
             {
-                Accumulator /= divisor;
+                Console.WriteLine("Cannot divide by zero");
+                // throw new System.DivideByZeroException();
             }
+            else Accumulator /= divisor;
 
             catch (DivideByZeroException e)
             {
