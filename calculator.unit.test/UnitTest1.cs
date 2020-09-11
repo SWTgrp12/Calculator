@@ -10,10 +10,12 @@ namespace calculator.unit.test
     public class CalculatorTests
     {
         private Calculator_class uut;
+        double Precision = 0.015;
         [SetUp]
         public void Setup()
         {
             uut = new Calculator_class();
+            
         }
         // testcase example below
         [TestCase(2, 6, 8)]
@@ -68,7 +70,7 @@ namespace calculator.unit.test
         [TestCase(0.2344556644566, 10.5478823467899, 0.000000227)]
         public void TestPower(double a, double b, double c)
         {
-            Assert.That(uut.Power(a, b), Is.EqualTo(c).Within(0.0001));
+            Assert.That(uut.Power(a, b), Is.EqualTo(c).Within(Precision));
         }
         [TestCase(4, 2, 16)]
         [TestCase(10, 2, 100)]
@@ -107,7 +109,7 @@ namespace calculator.unit.test
         {
             uut.Add(startValue);
 
-            Assert.That(uut.Multiply(a), Is.EqualTo(result));
+            Assert.That(uut.Multiply(a), Is.EqualTo(result).Within(Precision));
         }
 
         // Divide //
