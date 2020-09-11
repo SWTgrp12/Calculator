@@ -28,7 +28,7 @@ namespace Calculator
 
         }
 
-        public double Power(double a, double exp) // pav
+        public double Power(double a, double exp) // 
         {
             // vi skal have en exception i den her stil for at undgå imaginære tal 
             if (a < 0.0 && exp < 1 && exp > -1.0)
