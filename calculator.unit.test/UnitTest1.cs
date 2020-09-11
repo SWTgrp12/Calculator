@@ -15,7 +15,6 @@ namespace calculator.unit.test
         public void Setup()
         {
             uut = new Calculator_class();
-            
         }
         // testcase example below
         [TestCase(2, 6, 8)]
@@ -59,33 +58,6 @@ namespace calculator.unit.test
         {
             Assert.That(uut.Subtract(a), Is.EqualTo(result));
         }
-        // Power //
-        [TestCase(4, 2, 16)]
-        [TestCase(10, 2, 100)]
-        [TestCase(-5, 2, 25)]
-        [TestCase(1, -1, 1)]
-        [TestCase(-4, 3, -64)]
-        [TestCase(-3, 3, -27)]
-        [TestCase(234567.3332, 10.54788, 4.4150688277476919E+56)]
-        [TestCase(0.2344556644566, 10.5478823467899, 0.000000227)]
-        public void TestPower(double a, double b, double c)
-        {
-            Assert.That(uut.Power(a, b), Is.EqualTo(c).Within(Precision));
-        }
-        [TestCase(4, 2, 16)]
-        [TestCase(10, 2, 100)]
-        [TestCase(-5, 2, 25)]
-        [TestCase(1, -1, 1)]
-        [TestCase(-4, 3, -64)]
-        [TestCase(-3, 3, -27)]
-        [TestCase(234567.33, 10.547, 4.3672854664322518E+56d)]
-        [TestCase(0.23, 10.5478823467899, 0.000000227)]
-        public void TestPowerSingle(double a, double b, double c)
-        {
-            // a added to the accumulator.
-            uut.Add(a);
-            Assert.That(uut.Power(b), Is.EqualTo(c).Within(0.0001));
-        }
 
         // Multiply //
         [TestCase(4, 2, 8)]
@@ -103,7 +75,6 @@ namespace calculator.unit.test
         [TestCase(10, -2, -20)]
         [TestCase(10, 10, 100)]
         [TestCase(20, 5.5, 110)]
-        // [TestCase(125.12343, 5.5, 688.17865)] // hvis du sætter result til 688.16 virker det. Underlig afrunding ved større tal?
         [TestCase(125.12343, 5.5, 688.16)]
         public void MultiplySingle(double startValue, double a, double result)
         {
@@ -133,9 +104,9 @@ namespace calculator.unit.test
         [Test]
         public void Divide_By_Zero()
         {
-            Assert.DoesNotThrow(() => uut.Divide(20, 0));
+            Assert.Catch<ExceptionDivideByZero>(() => uut.Divide(6, 0));
         }
-
+        
         [TestCase(10)]
         [TestCase(0)]
         public void Divide_By_Zero_Single(double a)
@@ -152,6 +123,34 @@ namespace calculator.unit.test
             uut.Add(a);
             Console.WriteLine(uut.Accumulator);
             Assert.That(uut.Divide(0), Is.EqualTo(a));
+        }
+
+        // Power //
+        [TestCase(10, 2, 100)]
+        [TestCase(-5, 2, 25)]
+        [TestCase(1, -1, 1)]
+        [TestCase(-4, 3, -64)]
+        [TestCase(234567.3332, 10.54788, 4.4150688277476919E+56)]
+        [TestCase(0.2344556644566, 10.5478823467899, 0.000000227)]
+        public void TestPower(double a, double b, double c)
+        {
+            Assert.That(uut.Power(a, b), Is.EqualTo(c).Within(Precision));
+        }
+        [TestCase(10, 2, 100)]
+        [TestCase(1, -1, 1)]
+        [TestCase(-4, 3, -64)]
+        [TestCase(234567.33, 10.547, 4.3672854664322518E+56d)]
+        [TestCase(0.23, 10.5478823467899, 0.000000227)]
+        public void TestPowerSingle(double a, double b, double c)
+        {
+            // a added to the accumulator.
+            uut.Add(a);
+            Assert.That(uut.Power(b), Is.EqualTo(c).Within(Precision));
+        }
+        [Test]
+        public void Power_Returns_imaginary_number()
+        {
+            Assert.Catch<ExceptionImaginaryNumber>(() => uut.Power(-5, 0.5));
         }
 
         // Accumulator

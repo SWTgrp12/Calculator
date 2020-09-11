@@ -16,7 +16,7 @@ namespace Calculator
     {
         public ExceptionImaginaryNumber()
         {
-            Console.WriteLine("exponent most be positive numbers");
+            Console.WriteLine("exponent must be positive numbers");
         }
     }
 }

@@ -27,6 +27,19 @@ namespace Calculator
             return Accumulator;
 
         }
+        public double Divide(double dividend, double divisor) // arseniy
+        {
+            if (divisor == 0)
+            {
+                throw new ExceptionDivideByZero();
+            }
+            else
+            {
+                Accumulator = dividend / divisor;
+                Accumulator = Math.Round(Accumulator, 2);
+            }
+            return Accumulator;
+        }
 
         public double Power(double a, double exp) // 
         {
@@ -35,22 +48,12 @@ namespace Calculator
             {
                 throw new ExceptionImaginaryNumber();
             }
-            
-            Accumulator = Math.Pow(a, exp);
-            Accumulator = Math.Round(Accumulator, 2);
-            return Accumulator;
-        }
-
-        public double Divide(double dividend, double divisor) // arseniy
-        {
-            if(divisor == 0){
-                throw new ExceptionDivideByZero();
+            else
+            {
+                Accumulator = Math.Pow(a, exp);
+                Accumulator = Math.Round(Accumulator, 2);
             }
-
-            Accumulator = dividend / divisor;
-            Accumulator = Math.Round(Accumulator, 2);
             return Accumulator;
-
         }
 
         public double Accumulator { get; private set; } = 0; // 0 is default
@@ -60,7 +63,7 @@ namespace Calculator
             Accumulator = 0;
         }
 
-        // jer 2 start
+        // overloaded single input functions
         public double Add(double addend)
         {
             Accumulator += addend;
@@ -84,27 +87,14 @@ namespace Calculator
 
         public double Divide(double divisor) // pav
         {
-            if (divisor == 0)
-            {
-              throw new DivideByZeroException();
-            }
-            Accumulator /= divisor;
-            Accumulator = Math.Round(Accumulator, 2);
+            Accumulator = Divide(Accumulator, divisor);
             return Accumulator;
         }
         ///////// jer 2 slut
         public double Power(double exponent) // arseniy
         {
-            // vi skal have en exception i den her stil for at undgå imaginære tal
-            if (Accumulator < 0.0 && exponent < 1.0 && exponent > -1.0)
-            {
-                throw new ExceptionImaginaryNumber();
-            }
-
-            Accumulator = Math.Pow(Accumulator, exponent);
-            Accumulator = Math.Round(Accumulator, 2);
+            Accumulator = Power(Accumulator, exponent);
             return Accumulator;
-
         }
     }
 }
