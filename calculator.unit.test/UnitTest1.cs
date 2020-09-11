@@ -24,7 +24,7 @@ namespace calculator.unit.test
         [TestCase(-4, -4, -8)]
         [TestCase(-3, 6, 3)]
 
-        public void TestAddition(double a, double b, double c)
+        public void Add(double a, double b, double c)
         {
             Assert.That(uut.Add(a, b), Is.EqualTo(c));
         }
@@ -34,7 +34,7 @@ namespace calculator.unit.test
         [TestCase(50, 50)]
         [TestCase(50.595959, 50.60)] // test af afrunding
         [TestCase(-5030, -5030)]
-        public void AddSingle(double a, double result)
+        public void Add_Single(double a, double result)
         {
             Assert.That(uut.Add(a), Is.EqualTo(result));
         }
@@ -45,7 +45,7 @@ namespace calculator.unit.test
         [TestCase(8, -6, 14)]
         [TestCase(-4, 4, -8)]
         [TestCase(-3, 6, -9)]
-        public void TestSubtraction(double a, double b, double c)
+        public void Subtract(double a, double b, double c)
         {
             Assert.That(uut.Subtract(a, b), Is.EqualTo(c));
         }
@@ -54,7 +54,7 @@ namespace calculator.unit.test
         [TestCase(50, -50)]
         [TestCase(50.595959, -50.60)] // test af afrunding
         [TestCase(-5030, 5030)]
-        public void SubtractSingle(double a, double result)
+        public void Subtract_Single(double a, double result)
         {
             Assert.That(uut.Subtract(a), Is.EqualTo(result));
         }
@@ -66,7 +66,7 @@ namespace calculator.unit.test
         [TestCase(6, -6, -36)]
         [TestCase(-4, -4, 16)]
         [TestCase(-3, 6, -18)]
-        public void TestMultiply(double a, double b, double c)
+        public void Multiply(double a, double b, double c)
         {
             Assert.That(uut.Multiply(a, b), Is.EqualTo(c));
         }
@@ -76,7 +76,7 @@ namespace calculator.unit.test
         [TestCase(10, 10, 100)]
         [TestCase(20, 5.5, 110)]
         [TestCase(125.12343, 5.5, 688.16)]
-        public void MultiplySingle(double startValue, double a, double result)
+        public void Multiply_Single(double startValue, double a, double result)
         {
             uut.Add(startValue);
 
@@ -87,7 +87,7 @@ namespace calculator.unit.test
         [TestCase(6, 2, 3)]
         [TestCase(50, 5, 10)]
         [TestCase(8, 1, 8)]
-        public void TestDivisor(double a, double b, double c)
+        public void Divide(double a, double b, double c)
         {
             Assert.That(uut.Divide(a, b), Is.EqualTo(c));
         }
@@ -95,7 +95,7 @@ namespace calculator.unit.test
         [TestCase(2, 5)]
         [TestCase(-5, -2)]
         [TestCase(4, 2.5)]
-        public void DivideSingle(double a, double result)
+        public void Divide_Single(double a, double result)
         {
             uut.Add(10);
             Assert.That(uut.Divide(a), Is.EqualTo(result));
@@ -103,7 +103,7 @@ namespace calculator.unit.test
 
         [TestCase(10)]
         [TestCase(0)]
-        public void Divide_By_Zero(double a)
+        public void Divide_ByZero(double a)
         {
             uut.Add(a);
             Console.WriteLine(uut.Accumulator);
@@ -118,23 +118,24 @@ namespace calculator.unit.test
         [TestCase(-4, 3, -64)]
         [TestCase(234567.3332, 10.54788, 4.4150688277476919E+56)]
         [TestCase(0.2344556644566, 10.5478823467899, 0.000000227)]
-        public void TestPower(double a, double b, double c)
+        public void Power(double a, double b, double c)
         {
             Assert.That(uut.Power(a, b), Is.EqualTo(c).Within(Precision));
         }
+
         [TestCase(10, 2, 100)]
         [TestCase(1, -1, 1)]
         [TestCase(-4, 3, -64)]
         [TestCase(234567.33, 10.547, 4.3672854664322518E+56d)]
         [TestCase(0.23, 10.5478823467899, 0.000000227)]
-        public void TestPowerSingle(double a, double b, double c)
+        public void Power_Single(double a, double b, double c)
         {
             // a added to the accumulator.
             uut.Add(a);
             Assert.That(uut.Power(b), Is.EqualTo(c).Within(Precision));
         }
         [Test]
-        public void Power_Returns_imaginary_number()
+        public void Power_NoImaginaryNumbers()
         {
             Assert.Catch<ExceptionImaginaryNumber>(() => uut.Power(-5, 0.5));
         }

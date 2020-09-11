@@ -90,7 +90,6 @@ namespace Calculator
             Accumulator = Divide(Accumulator, divisor);
             return Accumulator;
         }
-        ///////// jer 2 slut
         public double Power(double exponent) // arseniy
         {
             Accumulator = Power(Accumulator, exponent);
